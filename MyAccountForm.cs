@@ -18,7 +18,7 @@ namespace SNCF_2
         MySqlConnection conn;
         MySqlCommand command;
 
-        public MyAccountForm()
+        public MyAccountForm(client thisClient)
         {
             connString = "Server=localhost;Port=3306;Database=sncf;Uid=root;password=root";
             conn = new MySqlConnection(connString);

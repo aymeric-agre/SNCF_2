@@ -30,24 +30,25 @@ namespace SNCF_2
 
         private void createNewAccountButton_Click(object sender, EventArgs e)
         {
-            string login = this.loginTextBox.Text.ToString();
-            string password = this.passwordTextBox.Text.ToString();
-            string name = this.nameTextBox.Text.ToString();
-            string age = this.ageTextBox.Text.ToString();
+            client thisClient = new client();
+            thisClient.login = this.loginTextBox.Text.ToString();
+            thisClient.password = this.passwordTextBox.Text.ToString();
+            thisClient.nom = this.nameTextBox.Text.ToString();
             int ageValue;
-            if (int.TryParse(age, out ageValue) && ageValue > 0 && ageValue < 150)
+            if (int.TryParse(this.nameTextBox.Text.ToString(), out ageValue) && ageValue > 0 && ageValue < 150)
             {
+                thisClient.age = ageValue;
                 string reduction = Math.Abs((float)ageValue / 100f - 0.5).ToString().Replace(',','.');
 
-                bool logged = loginFunction(login, password);
+                bool logged = loginFunction(thisClient.login, thisClient.password);
 
                 if (!logged)
                 {
                     conn.Open();
-                    command.CommandText = "Insert into client (login, password, nom, age, reduction) values('" + login + "','" + password + "','" + name + "','" + age + "','" + reduction + "')";
+                    command.CommandText = "Insert into client (login, password, nom, age, reduction) values('" + thisClient.login + "','" + thisClient.password + "','" + thisClient.nom + "','" + thisClient.age + "','" + thisClient.reduction + "')";
                     command.ExecuteNonQuery();
                     conn.Close();
-                    redirection();
+                    redirection(thisClient);
                 }
                 else
                 {
@@ -109,10 +110,10 @@ namespace SNCF_2
             this.ageTextBox.Visible = true;
         }
 
-        private void redirection()
+        private void redirection(client thisClient)
         {
             this.Hide();
-            MyAccountForm myAccountForm = new MyAccountForm();
+            MyAccountForm myAccountForm = new MyAccountForm(thisClient);
             myAccountForm.Show();
         }
 

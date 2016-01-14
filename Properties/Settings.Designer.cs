@@ -26,8 +26,8 @@ namespace SNCF_2.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;database=sncf;password=root;persistsecurityinfo=Tru" +
-            "e;allowuservariables=True;keepalive=1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;uid=root;database=sncf;password=root;persistsecurityinfo=True;al" +
+            "lowuservariables=True;keepalive=1")]
         public string sncfConnectionString {
             get {
                 return ((string)(this["sncfConnectionString"]));

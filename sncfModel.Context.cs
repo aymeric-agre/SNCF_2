@@ -13,10 +13,10 @@ namespace SNCF_2
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Model3 : DbContext
+    public partial class sncfEntities : DbContext
     {
-        public Model3()
-            : base("name=Model3")
+        public sncfEntities()
+            : base("name=sncfEntities")
         {
         }
     

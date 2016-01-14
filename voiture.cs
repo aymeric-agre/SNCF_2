@@ -29,5 +29,6 @@ namespace SNCF_2
         public virtual ICollection<billet> billet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<place> place { get; set; }
+        public virtual train train { get; set; }
     }
 }

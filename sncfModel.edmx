@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sncfModel3.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="sncfModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="billet">
           <Key>
             <PropertyRef Name="idbillet" />
@@ -62,6 +62,18 @@
           <Property Name="placesDispo" Type="int" />
           <Property Name="idtrain" Type="int" />
         </EntityType>
+        <Association Name="idacheteur">
+          <End Role="client" Type="Self.client" Multiplicity="0..1" />
+          <End Role="billet" Type="Self.billet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="idclient" />
+            </Principal>
+            <Dependent Role="billet">
+              <PropertyRef Name="idclient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="idplaces">
           <End Role="place" Type="Self.place" Multiplicity="0..1" />
           <End Role="billet" Type="Self.billet" Multiplicity="*" />
@@ -82,6 +94,18 @@
               <PropertyRef Name="idtrain" />
             </Principal>
             <Dependent Role="billet">
+              <PropertyRef Name="idtrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="idtrainVoiture">
+          <End Role="train" Type="Self.train" Multiplicity="0..1" />
+          <End Role="voiture" Type="Self.voiture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="train">
+              <PropertyRef Name="idtrain" />
+            </Principal>
+            <Dependent Role="voiture">
               <PropertyRef Name="idtrain" />
             </Dependent>
           </ReferentialConstraint>
@@ -110,13 +134,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="sncfModel3StoreContainer">
+        <EntityContainer Name="sncfModelStoreContainer">
           <EntitySet Name="billet" EntityType="Self.billet" Schema="sncf" store:Type="Tables" />
           <EntitySet Name="client" EntityType="Self.client" Schema="sncf" store:Type="Tables" />
           <EntitySet Name="place" EntityType="Self.place" Schema="sncf" store:Type="Tables" />
           <EntitySet Name="train" EntityType="Self.train" Schema="sncf" store:Type="Tables" />
           <EntitySet Name="villes" EntityType="Self.villes" Schema="sncf" store:Type="Tables" />
           <EntitySet Name="voiture" EntityType="Self.voiture" Schema="sncf" store:Type="Tables" />
+          <AssociationSet Name="idacheteur" Association="Self.idacheteur">
+            <End Role="client" EntitySet="client" />
+            <End Role="billet" EntitySet="billet" />
+          </AssociationSet>
           <AssociationSet Name="idplaces" Association="Self.idplaces">
             <End Role="place" EntitySet="place" />
             <End Role="billet" EntitySet="billet" />
@@ -124,6 +152,10 @@
           <AssociationSet Name="idtrains" Association="Self.idtrains">
             <End Role="train" EntitySet="train" />
             <End Role="billet" EntitySet="billet" />
+          </AssociationSet>
+          <AssociationSet Name="idtrainVoiture" Association="Self.idtrainVoiture">
+            <End Role="train" EntitySet="train" />
+            <End Role="voiture" EntitySet="voiture" />
           </AssociationSet>
           <AssociationSet Name="idvoiturePlace" Association="Self.idvoiturePlace">
             <End Role="voiture" EntitySet="voiture" />
@@ -138,7 +170,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="sncfModel3" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="sncfModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="billet">
           <Key>
             <PropertyRef Name="idbillet" />
@@ -155,6 +187,7 @@
           <Property Name="idvoiture" Type="Int32" />
           <Property Name="idplace" Type="Int32" />
           <Property Name="idclient" Type="Int32" />
+          <NavigationProperty Name="client" Relationship="Self.idacheteur" FromRole="billet" ToRole="client" />
           <NavigationProperty Name="place" Relationship="Self.idplaces" FromRole="billet" ToRole="place" />
           <NavigationProperty Name="train" Relationship="Self.idtrains" FromRole="billet" ToRole="train" />
           <NavigationProperty Name="voiture" Relationship="Self.idvoitures" FromRole="billet" ToRole="voiture" />
@@ -169,6 +202,7 @@
           <Property Name="reduction" Type="Single" />
           <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="billet" Relationship="Self.idacheteur" FromRole="client" ToRole="billet" />
         </EntityType>
         <EntityType Name="place">
           <Key>
@@ -187,6 +221,7 @@
           </Key>
           <Property Name="idtrain" Type="Int32" Nullable="false" />
           <NavigationProperty Name="billet" Relationship="Self.idtrains" FromRole="train" ToRole="billet" />
+          <NavigationProperty Name="voiture" Relationship="Self.idtrainVoiture" FromRole="train" ToRole="voiture" />
         </EntityType>
         <EntityType Name="villes">
           <Key>
@@ -203,7 +238,20 @@
           <Property Name="idtrain" Type="Int32" />
           <NavigationProperty Name="billet" Relationship="Self.idvoitures" FromRole="voiture" ToRole="billet" />
           <NavigationProperty Name="place" Relationship="Self.idvoiturePlace" FromRole="voiture" ToRole="place" />
+          <NavigationProperty Name="train" Relationship="Self.idtrainVoiture" FromRole="voiture" ToRole="train" />
         </EntityType>
+        <Association Name="idacheteur">
+          <End Role="client" Type="Self.client" Multiplicity="0..1" />
+          <End Role="billet" Type="Self.billet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="idclient" />
+            </Principal>
+            <Dependent Role="billet">
+              <PropertyRef Name="idclient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="idplaces">
           <End Role="place" Type="Self.place" Multiplicity="0..1" />
           <End Role="billet" Type="Self.billet" Multiplicity="*" />
@@ -252,13 +300,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Model3" annotation:LazyLoadingEnabled="true">
+        <Association Name="idtrainVoiture">
+          <End Role="train" Type="Self.train" Multiplicity="0..1" />
+          <End Role="voiture" Type="Self.voiture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="train">
+              <PropertyRef Name="idtrain" />
+            </Principal>
+            <Dependent Role="voiture">
+              <PropertyRef Name="idtrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sncfEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="billet" EntityType="Self.billet" />
           <EntitySet Name="client" EntityType="Self.client" />
           <EntitySet Name="place" EntityType="Self.place" />
           <EntitySet Name="train" EntityType="Self.train" />
           <EntitySet Name="villes" EntityType="Self.villes" />
           <EntitySet Name="voiture" EntityType="Self.voiture" />
+          <AssociationSet Name="idacheteur" Association="Self.idacheteur">
+            <End Role="client" EntitySet="client" />
+            <End Role="billet" EntitySet="billet" />
+          </AssociationSet>
           <AssociationSet Name="idplaces" Association="Self.idplaces">
             <End Role="place" EntitySet="place" />
             <End Role="billet" EntitySet="billet" />
@@ -275,15 +339,19 @@
             <End Role="voiture" EntitySet="voiture" />
             <End Role="place" EntitySet="place" />
           </AssociationSet>
+          <AssociationSet Name="idtrainVoiture" Association="Self.idtrainVoiture">
+            <End Role="train" EntitySet="train" />
+            <End Role="voiture" EntitySet="voiture" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="sncfModel3StoreContainer" CdmEntityContainer="Model3">
+        <EntityContainerMapping StorageEntityContainer="sncfModelStoreContainer" CdmEntityContainer="sncfEntities">
           <EntitySetMapping Name="billet">
-            <EntityTypeMapping TypeName="sncfModel3.billet">
+            <EntityTypeMapping TypeName="sncfModel.billet">
               <MappingFragment StoreEntitySet="billet">
                 <ScalarProperty Name="idbillet" ColumnName="idbillet" />
                 <ScalarProperty Name="villeDepart" ColumnName="villeDepart" />
@@ -301,7 +369,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="client">
-            <EntityTypeMapping TypeName="sncfModel3.client">
+            <EntityTypeMapping TypeName="sncfModel.client">
               <MappingFragment StoreEntitySet="client">
                 <ScalarProperty Name="idclient" ColumnName="idclient" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
@@ -313,7 +381,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="place">
-            <EntityTypeMapping TypeName="sncfModel3.place">
+            <EntityTypeMapping TypeName="sncfModel.place">
               <MappingFragment StoreEntitySet="place">
                 <ScalarProperty Name="idplace" ColumnName="idplace" />
                 <ScalarProperty Name="numero" ColumnName="numero" />
@@ -323,21 +391,21 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="train">
-            <EntityTypeMapping TypeName="sncfModel3.train">
+            <EntityTypeMapping TypeName="sncfModel.train">
               <MappingFragment StoreEntitySet="train">
                 <ScalarProperty Name="idtrain" ColumnName="idtrain" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="villes">
-            <EntityTypeMapping TypeName="sncfModel3.villes">
+            <EntityTypeMapping TypeName="sncfModel.villes">
               <MappingFragment StoreEntitySet="villes">
                 <ScalarProperty Name="nom" ColumnName="nom" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="voiture">
-            <EntityTypeMapping TypeName="sncfModel3.voiture">
+            <EntityTypeMapping TypeName="sncfModel.voiture">
               <MappingFragment StoreEntitySet="voiture">
                 <ScalarProperty Name="idvoiture" ColumnName="idvoiture" />
                 <ScalarProperty Name="placesDispo" ColumnName="placesDispo" />

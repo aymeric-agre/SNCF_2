@@ -14,11 +14,20 @@ namespace SNCF_2
     
     public partial class client
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public client()
+        {
+            this.billet = new HashSet<billet>();
+        }
+    
         public int idclient { get; set; }
         public string nom { get; set; }
         public Nullable<int> age { get; set; }
         public Nullable<float> reduction { get; set; }
         public string login { get; set; }
         public string password { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<billet> billet { get; set; }
     }
 }

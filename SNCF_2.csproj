@@ -74,43 +74,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="billet.cs">
-      <DependentUpon>Model3.tt</DependentUpon>
+      <DependentUpon>sncfModel.tt</DependentUpon>
     </Compile>
     <Compile Include="client.cs">
-      <DependentUpon>Model3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="frmbillet.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmbillet.designer.cs">
-      <DependentUpon>frmbillet.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmclient.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmclient.designer.cs">
-      <DependentUpon>frmclient.cs</DependentUpon>
+      <DependentUpon>sncfModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Model3.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model3.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model3.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model3.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model3.edmx</DependentUpon>
     </Compile>
     <Compile Include="MyAccountForm.cs">
       <SubType>Form</SubType>
@@ -120,7 +93,7 @@
     </Compile>
     <Compile Include="MyDateTimePickerColumn.cs" />
     <Compile Include="place.cs">
-      <DependentUpon>Model3.tt</DependentUpon>
+      <DependentUpon>sncfModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,27 +102,37 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>sncfDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="sncfModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sncfModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sncfModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sncfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sncfModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sncfModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="train.cs">
-      <DependentUpon>Model3.tt</DependentUpon>
+      <DependentUpon>sncfModel.tt</DependentUpon>
     </Compile>
     <Compile Include="villes.cs">
-      <DependentUpon>Model3.tt</DependentUpon>
+      <DependentUpon>sncfModel.tt</DependentUpon>
     </Compile>
     <Compile Include="voiture.cs">
-      <DependentUpon>Model3.tt</DependentUpon>
+      <DependentUpon>sncfModel.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmbillet.resx">
-      <DependentUpon>frmbillet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmclient.resx">
-      <DependentUpon>frmclient.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MyAccountForm.resx">
       <DependentUpon>MyAccountForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -160,13 +143,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="Model3.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model3.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model3.edmx.diagram">
-      <DependentUpon>Model3.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -187,6 +163,13 @@
     </None>
     <None Include="sncfDataSet.xss">
       <DependentUpon>sncfDataSet.xsd</DependentUpon>
+    </None>
+    <EntityDeploy Include="sncfModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>sncfModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="sncfModel.edmx.diagram">
+      <DependentUpon>sncfModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -236,15 +219,15 @@
     <Content Include="..\..\..\..\..\..\Program Files %28x86%29\Microsoft Visual Studio 12.0\Common7\IDE\ItemTemplatesCache\CSharp\MySQL\CSharpWinform_ItemTemplate.zip\Resources\bindingNavigatorSaveItem.Image.png">
       <Link>Resources\bindingNavigatorSaveItem.Image.png</Link>
     </Content>
-    <Content Include="Model3.Context.tt">
+    <Content Include="sncfModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model3.edmx</DependentUpon>
-      <LastGenOutput>Model3.Context.cs</LastGenOutput>
+      <DependentUpon>sncfModel.edmx</DependentUpon>
+      <LastGenOutput>sncfModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model3.tt">
+    <Content Include="sncfModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model3.edmx</DependentUpon>
-      <LastGenOutput>Model3.cs</LastGenOutput>
+      <DependentUpon>sncfModel.edmx</DependentUpon>
+      <LastGenOutput>sncfModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

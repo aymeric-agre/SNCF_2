@@ -18,11 +18,14 @@ namespace SNCF_2
         public train()
         {
             this.billet = new HashSet<billet>();
+            this.voiture = new HashSet<voiture>();
         }
     
         public int idtrain { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<billet> billet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<voiture> voiture { get; set; }
     }
 }

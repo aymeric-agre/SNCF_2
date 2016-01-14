@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="sncfModelStoreContainer" CdmEntityContainer="sncfEntities">
+    <EntitySetMapping Name="billet">
+      <EntityTypeMapping TypeName="sncfModel.billet">
+        <MappingFragment StoreEntitySet="billet">
+          <ScalarProperty Name="idbillet" ColumnName="idbillet" />
+          <ScalarProperty Name="villeDepart" ColumnName="villeDepart" />
+          <ScalarProperty Name="villeArrivee" ColumnName="villeArrivee" />
+          <ScalarProperty Name="gareDepart" ColumnName="gareDepart" />
+          <ScalarProperty Name="gareArrivee" ColumnName="gareArrivee" />
+          <ScalarProperty Name="heureDepart" ColumnName="heureDepart" />
+          <ScalarProperty Name="heureArrivee" ColumnName="heureArrivee" />
+          <ScalarProperty Name="prix" ColumnName="prix" />
+          <ScalarProperty Name="idtrain" ColumnName="idtrain" />
+          <ScalarProperty Name="idvoiture" ColumnName="idvoiture" />
+          <ScalarProperty Name="idplace" ColumnName="idplace" />
+          <ScalarProperty Name="idclient" ColumnName="idclient" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="client">
+      <EntityTypeMapping TypeName="sncfModel.client">
+        <MappingFragment StoreEntitySet="client">
+          <ScalarProperty Name="idclient" ColumnName="idclient" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="reduction" ColumnName="reduction" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="place">
+      <EntityTypeMapping TypeName="sncfModel.place">
+        <MappingFragment StoreEntitySet="place">
+          <ScalarProperty Name="idplace" ColumnName="idplace" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="situation" ColumnName="situation" />
+          <ScalarProperty Name="idvoiture" ColumnName="idvoiture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="train">
+      <EntityTypeMapping TypeName="sncfModel.train">
+        <MappingFragment StoreEntitySet="train">
+          <ScalarProperty Name="idtrain" ColumnName="idtrain" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="villes">
+      <EntityTypeMapping TypeName="sncfModel.villes">
+        <MappingFragment StoreEntitySet="villes">
+          <ScalarProperty Name="nom" ColumnName="nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="voiture">
+      <EntityTypeMapping TypeName="sncfModel.voiture">
+        <MappingFragment StoreEntitySet="voiture">
+          <ScalarProperty Name="idvoiture" ColumnName="idvoiture" />
+          <ScalarProperty Name="placesDispo" ColumnName="placesDispo" />
+          <ScalarProperty Name="idtrain" ColumnName="idtrain" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

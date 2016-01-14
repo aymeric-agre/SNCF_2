@@ -27,6 +27,7 @@ namespace SNCF_2
         public Nullable<int> idplace { get; set; }
         public Nullable<int> idclient { get; set; }
     
+        public virtual client client { get; set; }
         public virtual place place { get; set; }
         public virtual train train { get; set; }
         public virtual voiture voiture { get; set; }

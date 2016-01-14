@@ -58,14 +58,14 @@ namespace SNCF_2
 			
 			this.Panel1 = new System.Windows.Forms.Panel();
 			
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.myTicketsGridView = new System.Windows.Forms.DataGridView();
 			this.billetBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			
 			((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.bindingNavigator1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.billetBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.myTicketsGridView)).BeginInit();
 			
 			this.Panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -212,15 +212,15 @@ namespace SNCF_2
 			this.Panel1.AutoSize = true;
 			
 			this.bindingNavigator1.BindingSource = this.billetBindingSource;
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dataGridView1.Location = new System.Drawing.Point(9, 37);
-			this.dataGridView1.Name = "dataGridView1"; 
-			this.dataGridView1.Size = new System.Drawing.Size(339, 261);
-			this.dataGridView1.TabIndex = 0;
-			this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
-			this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
-			this.Panel1.Controls.Add(this.dataGridView1);
+			this.myTicketsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.myTicketsGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.myTicketsGridView.Location = new System.Drawing.Point(9, 37);
+			this.myTicketsGridView.Name = "myTicketsGridView"; 
+			this.myTicketsGridView.Size = new System.Drawing.Size(339, 261);
+			this.myTicketsGridView.TabIndex = 0;
+			this.myTicketsGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.myTicketsGridView_CellValidating);
+			this.myTicketsGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.myTicketsGridView_DataError);
+			this.Panel1.Controls.Add(this.myTicketsGridView);
 			
 			
 			// 
@@ -242,7 +242,7 @@ namespace SNCF_2
 			this.Panel1.Padding = new System.Windows.Forms.Padding(10);
 			this.Controls.Add(this.Panel1);
 			((System.ComponentModel.ISupportInitialize)(this.billetBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.myTicketsGridView)).EndInit();
 			
 			this.Controls.Add(this.bindingNavigator1);
 			this.Panel1.ResumeLayout(false);
@@ -270,7 +270,7 @@ namespace SNCF_2
 		private System.Windows.Forms.ErrorProvider errorProvider1;
 		private System.Windows.Forms.Panel Panel1;
 		private System.Windows.Forms.BindingSource billetBindingSource;
-		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.DataGridView myTicketsGridView;
 		
 	}
 }

@@ -35,7 +35,7 @@
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
             this.createNewAccountButton = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.noAccountLinkLabel = new System.Windows.Forms.LinkLabel();
             this.nameLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.ageTextBox = new System.Windows.Forms.TextBox();
@@ -105,16 +105,16 @@
             this.createNewAccountButton.Visible = false;
             this.createNewAccountButton.Click += new System.EventHandler(this.createNewAccountButton_Click);
             // 
-            // linkLabel1
+            // noAccountLinkLabel
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(283, 192);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(140, 13);
-            this.linkLabel1.TabIndex = 7;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Pas de compte ? Cliquez ici.";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.noAccountLinkLabel.AutoSize = true;
+            this.noAccountLinkLabel.Location = new System.Drawing.Point(283, 192);
+            this.noAccountLinkLabel.Name = "noAccountLinkLabel";
+            this.noAccountLinkLabel.Size = new System.Drawing.Size(140, 13);
+            this.noAccountLinkLabel.TabIndex = 7;
+            this.noAccountLinkLabel.TabStop = true;
+            this.noAccountLinkLabel.Text = "Pas de compte ? Cliquez ici.";
+            this.noAccountLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.noAccountLinkLabel_LinkClicked);
             // 
             // nameLabel
             // 
@@ -161,7 +161,7 @@
             this.Controls.Add(this.ageTextBox);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.nameLabel);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.noAccountLinkLabel);
             this.Controls.Add(this.createNewAccountButton);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordTextBox);
@@ -185,7 +185,7 @@
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.Button createNewAccountButton;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel noAccountLinkLabel;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox ageTextBox;

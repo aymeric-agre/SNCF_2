@@ -38,12 +38,11 @@ namespace SNCF_2
             if (int.TryParse(this.ageTextBox.Text.ToString(), out ageValue) && ageValue > 0 && ageValue < 150)
             {
                 thisClient.age = ageValue;
-                string reduction = Math.Abs((float)ageValue / 100f - 0.5).ToString().Replace(',','.');
-                Console.WriteLine(reduction);
+                thisClient.reduction = Math.Abs(ageValue / 100 - 0.5f);
 
-                bool logged = loginFunction(thisClient.login, thisClient.password);
+                client logged = loginFunction(thisClient.login, thisClient.password);
 
-                if (!logged)
+                if (logged == null)
                 {
                     conn.Open();
                     command.CommandText = "Insert into client (login, password, nom, age, reduction) values('" + thisClient.login + "','" + thisClient.password + "','" + thisClient.nom + "','" + thisClient.age + "','" + thisClient.reduction + "')";
@@ -66,21 +65,21 @@ namespace SNCF_2
         {
             string login = this.loginTextBox.Text.ToString();
             string password = this.passwordTextBox.Text.ToString();
-            bool logged = loginFunction(login, password);
-            if (!logged)
+            client thisClient = loginFunction(login, password);
+            if (thisClient == null)
             {
                 MessageBox.Show("Les informations de connexion sont inexactes.");
             }
             else
             {
-                
+                redirection(thisClient);
             }
         }
 
-        private bool loginFunction(string login, string password)
+        private client loginFunction(string login, string password)
         {
-            bool value;
-            command.CommandText = "Select client.login from client where (login='" + login + "') AND (password='" + password + "')";
+            client thisClient = new client();
+            command.CommandText = "Select client.* from client where (login='" + login + "') AND (password='" + password + "')";
             try
             {
                 conn.Open();
@@ -90,19 +89,22 @@ namespace SNCF_2
                 Console.WriteLine(ex.Message);
             }
             MySqlDataReader reader = command.ExecuteReader();
+            
             if (!reader.Read())
             {
-                value = false;
+                conn.Close();
+                return null;
             }
             else
             {
-                value = true;
+                Console.WriteLine(reader);
+                conn.Close();
+                return thisClient;
             }
-            conn.Close();
-            return value;
+            
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void noAccountLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.createNewAccountButton.Visible = true;
             this.nameLabel.Visible = true;

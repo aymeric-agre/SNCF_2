@@ -57,6 +57,7 @@ namespace SNCF_2
         private void myProfilTabPage_Load(object sender, EventArgs e)
         {
             command.CommandText = "Select * from billet where (login='" + thisClient.login + "')";
+            
             bool value;
             try
             {
@@ -99,6 +100,13 @@ namespace SNCF_2
             this.nomTextBox.ReadOnly = value;
             this.ageTextBox.ReadOnly = value;
             this.modifyProfilButton.Text = textModifyProfilButton;
+        }
+
+        private void MyAccountForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'sncfDataSet.billet' table. You can move, or remove it, as needed.
+            
+
         }
     }
 }

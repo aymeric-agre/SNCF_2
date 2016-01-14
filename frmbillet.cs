@@ -47,49 +47,49 @@ namespace SNCF_2
 			bindingNavigatorMoveNextItem.Enabled = false;
 			bindingNavigatorMoveLastItem.Enabled = false;
 			toolStripButton1.Enabled = true;
-			dataGridView1.AutoGenerateColumns = false;
+			myTicketsGridView.AutoGenerateColumns = false;
 			string strConn2 = "server=localhost;uid=root;password=root;database=sncf;persistsecurityinfo=True;allowuservariables=True;keepalive=1;";
 			MySql.Data.MySqlClient.MySqlDataAdapter ad2 = null;
 			System.Windows.Forms.DataGridViewTextBoxColumn colidbillet = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			colidbillet.DataPropertyName = "idbillet";
 			colidbillet.HeaderText = "idbillet";
 			colidbillet.Name = "colidbillet";
-			dataGridView1.Columns.Add(colidbillet);
+			myTicketsGridView.Columns.Add(colidbillet);
 			System.Windows.Forms.DataGridViewTextBoxColumn colvilleDepart = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			colvilleDepart.DataPropertyName = "villeDepart";
 			colvilleDepart.HeaderText = "villeDepart";
 			colvilleDepart.Name = "colvilleDepart";
-			dataGridView1.Columns.Add(colvilleDepart);
+			myTicketsGridView.Columns.Add(colvilleDepart);
 			System.Windows.Forms.DataGridViewTextBoxColumn colvilleArrivee = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			colvilleArrivee.DataPropertyName = "villeArrivee";
 			colvilleArrivee.HeaderText = "villeArrivee";
 			colvilleArrivee.Name = "colvilleArrivee";
-			dataGridView1.Columns.Add(colvilleArrivee);
+			myTicketsGridView.Columns.Add(colvilleArrivee);
 			System.Windows.Forms.DataGridViewTextBoxColumn colgareDepart = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			colgareDepart.DataPropertyName = "gareDepart";
 			colgareDepart.HeaderText = "gareDepart";
 			colgareDepart.Name = "colgareDepart";
-			dataGridView1.Columns.Add(colgareDepart);
+			myTicketsGridView.Columns.Add(colgareDepart);
 			System.Windows.Forms.DataGridViewTextBoxColumn colgareArrivee = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			colgareArrivee.DataPropertyName = "gareArrivee";
 			colgareArrivee.HeaderText = "gareArrivee";
 			colgareArrivee.Name = "colgareArrivee";
-			dataGridView1.Columns.Add(colgareArrivee);
+			myTicketsGridView.Columns.Add(colgareArrivee);
 			MyDateTimePickerColumn colheureDepart = new MyDateTimePickerColumn();
 			colheureDepart.DataPropertyName = "heureDepart";
 			colheureDepart.HeaderText = "heureDepart";
 			colheureDepart.Name = "colheureDepart";
-			dataGridView1.Columns.Add(colheureDepart);
+			myTicketsGridView.Columns.Add(colheureDepart);
 			MyDateTimePickerColumn colheureArrivee = new MyDateTimePickerColumn();
 			colheureArrivee.DataPropertyName = "heureArrivee";
 			colheureArrivee.HeaderText = "heureArrivee";
 			colheureArrivee.Name = "colheureArrivee";
-			dataGridView1.Columns.Add(colheureArrivee);
+			myTicketsGridView.Columns.Add(colheureArrivee);
 			System.Windows.Forms.DataGridViewTextBoxColumn colprix = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			colprix.DataPropertyName = "prix";
 			colprix.HeaderText = "prix";
 			colprix.Name = "colprix";
-			dataGridView1.Columns.Add(colprix);
+			myTicketsGridView.Columns.Add(colprix);
 			System.Windows.Forms.DataGridViewComboBoxColumn colidtrain = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			colidtrain.DataSource = ctx.train.ToList();
 			colidtrain.DataPropertyName = "idtrain";
@@ -98,7 +98,7 @@ namespace SNCF_2
 			colidtrain.HeaderText = "idtrain";
 			colidtrain.Name = "colidtrain";
 			colidtrain.ToolTipText = "Pick the column from the foreign table to use as friendly value for this lookup.";
-			dataGridView1.Columns.Add(colidtrain);
+			myTicketsGridView.Columns.Add(colidtrain);
 			System.Windows.Forms.DataGridViewComboBoxColumn colidvoiture = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			colidvoiture.DataSource = ctx.voiture.ToList();
 			colidvoiture.DataPropertyName = "idvoiture";
@@ -107,7 +107,7 @@ namespace SNCF_2
 			colidvoiture.HeaderText = "idvoiture";
 			colidvoiture.Name = "colidvoiture";
 			colidvoiture.ToolTipText = "Pick the column from the foreign table to use as friendly value for this lookup.";
-			dataGridView1.Columns.Add(colidvoiture);
+			myTicketsGridView.Columns.Add(colidvoiture);
 			System.Windows.Forms.DataGridViewComboBoxColumn colidplace = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			colidplace.DataSource = ctx.place.ToList();
 			colidplace.DataPropertyName = "idplace";
@@ -116,13 +116,13 @@ namespace SNCF_2
 			colidplace.HeaderText = "idplace";
 			colidplace.Name = "colidplace";
 			colidplace.ToolTipText = "Pick the column from the foreign table to use as friendly value for this lookup.";
-			dataGridView1.Columns.Add(colidplace);
+			myTicketsGridView.Columns.Add(colidplace);
 			System.Windows.Forms.DataGridViewTextBoxColumn colidclient = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			colidclient.DataPropertyName = "idclient";
 			colidclient.HeaderText = "idclient";
 			colidclient.Name = "colidclient";
-			dataGridView1.Columns.Add(colidclient);
-			dataGridView1.DataSource = _entities;
+			myTicketsGridView.Columns.Add(colidclient);
+			myTicketsGridView.DataSource = _entities;
 			
 		}
 		
@@ -139,10 +139,10 @@ namespace SNCF_2
 			e.Cancel = false;
 		}
 		
-		private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+		private void myTicketsGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
 		{
 			string s;
-			DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+			DataGridViewRow row = myTicketsGridView.Rows[e.RowIndex];
 			object value = e.FormattedValue;
 			e.Cancel = false;
 			row.ErrorText = "";
@@ -254,9 +254,9 @@ namespace SNCF_2
 			}
 		}
 		
-		private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
+		private void myTicketsGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
 		{
-			dataGridView1.Rows[e.RowIndex].ErrorText = e.Exception.Message;
+			myTicketsGridView.Rows[e.RowIndex].ErrorText = e.Exception.Message;
 			e.Cancel = true;
 		}
 		

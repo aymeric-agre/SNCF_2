@@ -118,9 +118,7 @@
     <Compile Include="MyAccountForm.Designer.cs">
       <DependentUpon>MyAccountForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyDateTimePickerColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="MyDateTimePickerColumn.cs" />
     <Compile Include="place.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>

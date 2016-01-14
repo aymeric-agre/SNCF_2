@@ -19,6 +19,7 @@ namespace SNCF_2
         MySqlCommand command;
         client thisClient;
         bool modifying = false;
+        bool allerRetour = false;
 
         public MyAccountForm(client loggedClient)
         {
@@ -105,8 +106,53 @@ namespace SNCF_2
         private void MyAccountForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'sncfDataSet.billet' table. You can move, or remove it, as needed.
-            
+            conn.Open();
+            try
+            {
+                command.CommandText = "Select * from villes;";
+                MySqlDataReader myReader;
+                myReader = command.ExecuteReader();
+                while (myReader.Read())
+                {
+                    string townName = myReader.GetString("nom");
+                    selectionVilleDepartComboBox.Items.Add(townName);
+                    SelectionVilleArriveeComboBox.Items.Add(townName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
+            conn.Close();
+
+        }
+
+        private void newTicketTabPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void selectionVilleLabel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            allerRetour=!allerRetour;
+            retourCalendar.Visible = !retourCalendar.Visible;
+            RetourDateLabel.Visible = !RetourDateLabel.Visible;
         }
     }
 }

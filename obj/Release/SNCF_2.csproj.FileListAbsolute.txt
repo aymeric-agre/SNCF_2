@@ -16,3 +16,22 @@ D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.exe
 D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.pdb
 D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.csprojResolveAssemblyReference.cache
 D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.MyAccountForm.resources
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\SNCF_2.exe.config
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.exe
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.pdb
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\SNCF_2.exe
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\SNCF_2.pdb
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\EntityFramework.dll
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\MySql.Data.dll
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\MySql.Data.Entity.EF5.dll
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\MySql.Data.Entity.EF6.dll
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\EntityFramework.xml
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.csprojResolveAssemblyReference.cache
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.frmbillet.resources
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.frmclient.resources
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.MainForm.resources
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.MyAccountForm.resources
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.Properties.Resources.resources
+C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.csproj.GenerateResource.Cache

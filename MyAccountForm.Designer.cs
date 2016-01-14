@@ -54,19 +54,32 @@
             this.idplaceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.billetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sncfDataSet = new SNCF_2.sncfDataSet();
+            this.newTicketTabPage = new System.Windows.Forms.TabPage();
+            this.villeDepartLabel = new System.Windows.Forms.Label();
+            this.selectionVilleDepartComboBox = new System.Windows.Forms.ComboBox();
+            this.departCalendar = new System.Windows.Forms.MonthCalendar();
             this.billetTableAdapter = new SNCF_2.sncfDataSetTableAdapters.billetTableAdapter();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.SelectionVilleArriveeComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ARCheckbox = new System.Windows.Forms.CheckBox();
+            this.retourCalendar = new System.Windows.Forms.MonthCalendar();
+            this.departLabel = new System.Windows.Forms.Label();
+            this.RetourDateLabel = new System.Windows.Forms.Label();
             this.myAccountTabControl.SuspendLayout();
             this.myProfilTabPage.SuspendLayout();
             this.myTicketsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myTicketsGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.billetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sncfDataSet)).BeginInit();
+            this.newTicketTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // myAccountTabControl
             // 
             this.myAccountTabControl.Controls.Add(this.myProfilTabPage);
             this.myAccountTabControl.Controls.Add(this.myTicketsTabPage);
+            this.myAccountTabControl.Controls.Add(this.newTicketTabPage);
             this.myAccountTabControl.Location = new System.Drawing.Point(12, 12);
             this.myAccountTabControl.Name = "myAccountTabControl";
             this.myAccountTabControl.SelectedIndex = 0;
@@ -285,9 +298,108 @@
             this.sncfDataSet.DataSetName = "sncfDataSet";
             this.sncfDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // newTicketTabPage
+            // 
+            this.newTicketTabPage.Controls.Add(this.RetourDateLabel);
+            this.newTicketTabPage.Controls.Add(this.departLabel);
+            this.newTicketTabPage.Controls.Add(this.retourCalendar);
+            this.newTicketTabPage.Controls.Add(this.ARCheckbox);
+            this.newTicketTabPage.Controls.Add(this.label1);
+            this.newTicketTabPage.Controls.Add(this.SelectionVilleArriveeComboBox);
+            this.newTicketTabPage.Controls.Add(this.villeDepartLabel);
+            this.newTicketTabPage.Controls.Add(this.selectionVilleDepartComboBox);
+            this.newTicketTabPage.Controls.Add(this.departCalendar);
+            this.newTicketTabPage.Location = new System.Drawing.Point(4, 22);
+            this.newTicketTabPage.Name = "newTicketTabPage";
+            this.newTicketTabPage.Size = new System.Drawing.Size(1062, 230);
+            this.newTicketTabPage.TabIndex = 2;
+            this.newTicketTabPage.Text = "Acheter un billet";
+            this.newTicketTabPage.UseVisualStyleBackColor = true;
+            this.newTicketTabPage.Click += new System.EventHandler(this.newTicketTabPage_Click);
+            // 
+            // villeDepartLabel
+            // 
+            this.villeDepartLabel.AutoSize = true;
+            this.villeDepartLabel.Location = new System.Drawing.Point(37, 30);
+            this.villeDepartLabel.Name = "villeDepartLabel";
+            this.villeDepartLabel.Size = new System.Drawing.Size(74, 13);
+            this.villeDepartLabel.TabIndex = 2;
+            this.villeDepartLabel.Text = "Ville de départ";
+            this.villeDepartLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // selectionVilleDepartComboBox
+            // 
+            this.selectionVilleDepartComboBox.FormattingEnabled = true;
+            this.selectionVilleDepartComboBox.Location = new System.Drawing.Point(40, 46);
+            this.selectionVilleDepartComboBox.Name = "selectionVilleDepartComboBox";
+            this.selectionVilleDepartComboBox.Size = new System.Drawing.Size(122, 21);
+            this.selectionVilleDepartComboBox.TabIndex = 1;
+            this.selectionVilleDepartComboBox.SelectedIndexChanged += new System.EventHandler(this.selectionVilleLabel_SelectedIndexChanged);
+            // 
+            // departCalendar
+            // 
+            this.departCalendar.Location = new System.Drawing.Point(208, 46);
+            this.departCalendar.Name = "departCalendar";
+            this.departCalendar.TabIndex = 0;
+            this.departCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
+            // 
             // billetTableAdapter
             // 
             this.billetTableAdapter.ClearBeforeFill = true;
+            // 
+            // SelectionVilleArriveeComboBox
+            // 
+            this.SelectionVilleArriveeComboBox.FormattingEnabled = true;
+            this.SelectionVilleArriveeComboBox.Location = new System.Drawing.Point(40, 99);
+            this.SelectionVilleArriveeComboBox.Name = "SelectionVilleArriveeComboBox";
+            this.SelectionVilleArriveeComboBox.Size = new System.Drawing.Size(122, 21);
+            this.SelectionVilleArriveeComboBox.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(37, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Ville d\'arrivée";
+            // 
+            // ARCheckbox
+            // 
+            this.ARCheckbox.AutoSize = true;
+            this.ARCheckbox.Location = new System.Drawing.Point(40, 146);
+            this.ARCheckbox.Name = "ARCheckbox";
+            this.ARCheckbox.Size = new System.Drawing.Size(76, 17);
+            this.ARCheckbox.TabIndex = 5;
+            this.ARCheckbox.Text = "Aller-retour";
+            this.ARCheckbox.UseVisualStyleBackColor = true;
+            this.ARCheckbox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // retourCalendar
+            // 
+            this.retourCalendar.Location = new System.Drawing.Point(524, 46);
+            this.retourCalendar.Name = "retourCalendar";
+            this.retourCalendar.TabIndex = 6;
+            this.retourCalendar.Visible = false;
+            // 
+            // departLabel
+            // 
+            this.departLabel.AutoSize = true;
+            this.departLabel.Location = new System.Drawing.Point(283, 24);
+            this.departLabel.Name = "departLabel";
+            this.departLabel.Size = new System.Drawing.Size(78, 13);
+            this.departLabel.TabIndex = 7;
+            this.departLabel.Text = "Date de départ";
+            // 
+            // RetourDateLabel
+            // 
+            this.RetourDateLabel.AutoSize = true;
+            this.RetourDateLabel.Location = new System.Drawing.Point(602, 24);
+            this.RetourDateLabel.Name = "RetourDateLabel";
+            this.RetourDateLabel.Size = new System.Drawing.Size(75, 13);
+            this.RetourDateLabel.TabIndex = 8;
+            this.RetourDateLabel.Text = "Date de retour";
+            this.RetourDateLabel.Visible = false;
             // 
             // MyAccountForm
             // 
@@ -305,6 +417,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.myTicketsGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.billetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sncfDataSet)).EndInit();
+            this.newTicketTabPage.ResumeLayout(false);
+            this.newTicketTabPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -337,5 +451,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idtrainDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idvoitureDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idplaceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TabPage newTicketTabPage;
+        private System.Windows.Forms.MonthCalendar departCalendar;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Label villeDepartLabel;
+        private System.Windows.Forms.ComboBox selectionVilleDepartComboBox;
+        private System.Windows.Forms.ComboBox SelectionVilleArriveeComboBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox ARCheckbox;
+        private System.Windows.Forms.MonthCalendar retourCalendar;
+        private System.Windows.Forms.Label RetourDateLabel;
+        private System.Windows.Forms.Label departLabel;
     }
 }

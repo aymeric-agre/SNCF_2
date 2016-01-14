@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sncfModel3" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="billet">
+    <Key>
+      <PropertyRef Name="idbillet" />
+    </Key>
+    <Property Name="idbillet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="villeDepart" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="villeArrivee" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="gareDepart" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gareArrivee" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="heureDepart" Type="DateTime" />
+    <Property Name="heureArrivee" Type="DateTime" />
+    <Property Name="prix" Type="Single" />
+    <Property Name="idtrain" Type="Int32" />
+    <Property Name="idvoiture" Type="Int32" />
+    <Property Name="idplace" Type="Int32" />
+    <Property Name="idclient" Type="Int32" />
+    <NavigationProperty Name="place" Relationship="Self.idplaces" FromRole="billet" ToRole="place" />
+    <NavigationProperty Name="train" Relationship="Self.idtrains" FromRole="billet" ToRole="train" />
+    <NavigationProperty Name="voiture" Relationship="Self.idvoitures" FromRole="billet" ToRole="voiture" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="idclient" />
+    </Key>
+    <Property Name="idclient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="age" Type="Int32" />
+    <Property Name="reduction" Type="Single" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="place">
+    <Key>
+      <PropertyRef Name="idplace" />
+    </Key>
+    <Property Name="idplace" Type="Int32" Nullable="false" />
+    <Property Name="numero" Type="Int32" />
+    <Property Name="situation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="idvoiture" Type="Int32" />
+    <NavigationProperty Name="billet" Relationship="Self.idplaces" FromRole="place" ToRole="billet" />
+    <NavigationProperty Name="voiture" Relationship="Self.idvoiturePlace" FromRole="place" ToRole="voiture" />
+  </EntityType>
+  <EntityType Name="train">
+    <Key>
+      <PropertyRef Name="idtrain" />
+    </Key>
+    <Property Name="idtrain" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="billet" Relationship="Self.idtrains" FromRole="train" ToRole="billet" />
+  </EntityType>
+  <EntityType Name="villes">
+    <Key>
+      <PropertyRef Name="nom" />
+    </Key>
+    <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="voiture">
+    <Key>
+      <PropertyRef Name="idvoiture" />
+    </Key>
+    <Property Name="idvoiture" Type="Int32" Nullable="false" />
+    <Property Name="placesDispo" Type="Int32" />
+    <Property Name="idtrain" Type="Int32" />
+    <NavigationProperty Name="billet" Relationship="Self.idvoitures" FromRole="voiture" ToRole="billet" />
+    <NavigationProperty Name="place" Relationship="Self.idvoiturePlace" FromRole="voiture" ToRole="place" />
+  </EntityType>
+  <Association Name="idplaces">
+    <End Role="place" Type="Self.place" Multiplicity="0..1" />
+    <End Role="billet" Type="Self.billet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="place">
+        <PropertyRef Name="idplace" />
+      </Principal>
+      <Dependent Role="billet">
+        <PropertyRef Name="idplace" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idtrains">
+    <End Role="train" Type="Self.train" Multiplicity="0..1" />
+    <End Role="billet" Type="Self.billet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="train">
+        <PropertyRef Name="idtrain" />
+      </Principal>
+      <Dependent Role="billet">
+        <PropertyRef Name="idtrain" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idvoitures">
+    <End Role="voiture" Type="Self.voiture" Multiplicity="0..1" />
+    <End Role="billet" Type="Self.billet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="voiture">
+        <PropertyRef Name="idvoiture" />
+      </Principal>
+      <Dependent Role="billet">
+        <PropertyRef Name="idvoiture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idvoiturePlace">
+    <End Role="voiture" Type="Self.voiture" Multiplicity="0..1" />
+    <End Role="place" Type="Self.place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="voiture">
+        <PropertyRef Name="idvoiture" />
+      </Principal>
+      <Dependent Role="place">
+        <PropertyRef Name="idvoiture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Model3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="billet" EntityType="Self.billet" />
+    <EntitySet Name="client" EntityType="Self.client" />
+    <EntitySet Name="place" EntityType="Self.place" />
+    <EntitySet Name="train" EntityType="Self.train" />
+    <EntitySet Name="villes" EntityType="Self.villes" />
+    <EntitySet Name="voiture" EntityType="Self.voiture" />
+    <AssociationSet Name="idplaces" Association="Self.idplaces">
+      <End Role="place" EntitySet="place" />
+      <End Role="billet" EntitySet="billet" />
+    </AssociationSet>
+    <AssociationSet Name="idtrains" Association="Self.idtrains">
+      <End Role="train" EntitySet="train" />
+      <End Role="billet" EntitySet="billet" />
+    </AssociationSet>
+    <AssociationSet Name="idvoitures" Association="Self.idvoitures">
+      <End Role="voiture" EntitySet="voiture" />
+      <End Role="billet" EntitySet="billet" />
+    </AssociationSet>
+    <AssociationSet Name="idvoiturePlace" Association="Self.idvoiturePlace">
+      <End Role="voiture" EntitySet="voiture" />
+      <End Role="place" EntitySet="place" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

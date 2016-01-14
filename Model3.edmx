@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sncfModel3.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="billet">
+          <Key>
+            <PropertyRef Name="idbillet" />
+          </Key>
+          <Property Name="idbillet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="villeDepart" Type="varchar" MaxLength="255" />
+          <Property Name="villeArrivee" Type="varchar" MaxLength="255" />
+          <Property Name="gareDepart" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="gareArrivee" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="heureDepart" Type="datetime" Precision="0" />
+          <Property Name="heureArrivee" Type="datetime" Precision="0" />
+          <Property Name="prix" Type="float" />
+          <Property Name="idtrain" Type="int" />
+          <Property Name="idvoiture" Type="int" />
+          <Property Name="idplace" Type="int" />
+          <Property Name="idclient" Type="int" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="idclient" />
+          </Key>
+          <Property Name="idclient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="age" Type="int" />
+          <Property Name="reduction" Type="float" />
+          <Property Name="login" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="place">
+          <Key>
+            <PropertyRef Name="idplace" />
+          </Key>
+          <Property Name="idplace" Type="int" Nullable="false" />
+          <Property Name="numero" Type="int" />
+          <Property Name="situation" Type="varchar" MaxLength="45" />
+          <Property Name="idvoiture" Type="int" />
+        </EntityType>
+        <EntityType Name="train">
+          <Key>
+            <PropertyRef Name="idtrain" />
+          </Key>
+          <Property Name="idtrain" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="villes">
+          <Key>
+            <PropertyRef Name="nom" />
+          </Key>
+          <Property Name="nom" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="voiture">
+          <Key>
+            <PropertyRef Name="idvoiture" />
+          </Key>
+          <Property Name="idvoiture" Type="int" Nullable="false" />
+          <Property Name="placesDispo" Type="int" />
+          <Property Name="idtrain" Type="int" />
+        </EntityType>
+        <Association Name="idplaces">
+          <End Role="place" Type="Self.place" Multiplicity="0..1" />
+          <End Role="billet" Type="Self.billet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="place">
+              <PropertyRef Name="idplace" />
+            </Principal>
+            <Dependent Role="billet">
+              <PropertyRef Name="idplace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="idtrains">
+          <End Role="train" Type="Self.train" Multiplicity="0..1" />
+          <End Role="billet" Type="Self.billet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="train">
+              <PropertyRef Name="idtrain" />
+            </Principal>
+            <Dependent Role="billet">
+              <PropertyRef Name="idtrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="idvoiturePlace">
+          <End Role="voiture" Type="Self.voiture" Multiplicity="0..1" />
+          <End Role="place" Type="Self.place" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voiture">
+              <PropertyRef Name="idvoiture" />
+            </Principal>
+            <Dependent Role="place">
+              <PropertyRef Name="idvoiture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="idvoitures">
+          <End Role="voiture" Type="Self.voiture" Multiplicity="0..1" />
+          <End Role="billet" Type="Self.billet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voiture">
+              <PropertyRef Name="idvoiture" />
+            </Principal>
+            <Dependent Role="billet">
+              <PropertyRef Name="idvoiture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sncfModel3StoreContainer">
+          <EntitySet Name="billet" EntityType="Self.billet" Schema="sncf" store:Type="Tables" />
+          <EntitySet Name="client" EntityType="Self.client" Schema="sncf" store:Type="Tables" />
+          <EntitySet Name="place" EntityType="Self.place" Schema="sncf" store:Type="Tables" />
+          <EntitySet Name="train" EntityType="Self.train" Schema="sncf" store:Type="Tables" />
+          <EntitySet Name="villes" EntityType="Self.villes" Schema="sncf" store:Type="Tables" />
+          <EntitySet Name="voiture" EntityType="Self.voiture" Schema="sncf" store:Type="Tables" />
+          <AssociationSet Name="idplaces" Association="Self.idplaces">
+            <End Role="place" EntitySet="place" />
+            <End Role="billet" EntitySet="billet" />
+          </AssociationSet>
+          <AssociationSet Name="idtrains" Association="Self.idtrains">
+            <End Role="train" EntitySet="train" />
+            <End Role="billet" EntitySet="billet" />
+          </AssociationSet>
+          <AssociationSet Name="idvoiturePlace" Association="Self.idvoiturePlace">
+            <End Role="voiture" EntitySet="voiture" />
+            <End Role="place" EntitySet="place" />
+          </AssociationSet>
+          <AssociationSet Name="idvoitures" Association="Self.idvoitures">
+            <End Role="voiture" EntitySet="voiture" />
+            <End Role="billet" EntitySet="billet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sncfModel3" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="billet">
+          <Key>
+            <PropertyRef Name="idbillet" />
+          </Key>
+          <Property Name="idbillet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="villeDepart" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="villeArrivee" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="gareDepart" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gareArrivee" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="heureDepart" Type="DateTime" />
+          <Property Name="heureArrivee" Type="DateTime" />
+          <Property Name="prix" Type="Single" />
+          <Property Name="idtrain" Type="Int32" />
+          <Property Name="idvoiture" Type="Int32" />
+          <Property Name="idplace" Type="Int32" />
+          <Property Name="idclient" Type="Int32" />
+          <NavigationProperty Name="place" Relationship="Self.idplaces" FromRole="billet" ToRole="place" />
+          <NavigationProperty Name="train" Relationship="Self.idtrains" FromRole="billet" ToRole="train" />
+          <NavigationProperty Name="voiture" Relationship="Self.idvoitures" FromRole="billet" ToRole="voiture" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="idclient" />
+          </Key>
+          <Property Name="idclient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="reduction" Type="Single" />
+          <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="place">
+          <Key>
+            <PropertyRef Name="idplace" />
+          </Key>
+          <Property Name="idplace" Type="Int32" Nullable="false" />
+          <Property Name="numero" Type="Int32" />
+          <Property Name="situation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="idvoiture" Type="Int32" />
+          <NavigationProperty Name="billet" Relationship="Self.idplaces" FromRole="place" ToRole="billet" />
+          <NavigationProperty Name="voiture" Relationship="Self.idvoiturePlace" FromRole="place" ToRole="voiture" />
+        </EntityType>
+        <EntityType Name="train">
+          <Key>
+            <PropertyRef Name="idtrain" />
+          </Key>
+          <Property Name="idtrain" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="billet" Relationship="Self.idtrains" FromRole="train" ToRole="billet" />
+        </EntityType>
+        <EntityType Name="villes">
+          <Key>
+            <PropertyRef Name="nom" />
+          </Key>
+          <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="voiture">
+          <Key>
+            <PropertyRef Name="idvoiture" />
+          </Key>
+          <Property Name="idvoiture" Type="Int32" Nullable="false" />
+          <Property Name="placesDispo" Type="Int32" />
+          <Property Name="idtrain" Type="Int32" />
+          <NavigationProperty Name="billet" Relationship="Self.idvoitures" FromRole="voiture" ToRole="billet" />
+          <NavigationProperty Name="place" Relationship="Self.idvoiturePlace" FromRole="voiture" ToRole="place" />
+        </EntityType>
+        <Association Name="idplaces">
+          <End Role="place" Type="Self.place" Multiplicity="0..1" />
+          <End Role="billet" Type="Self.billet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="place">
+              <PropertyRef Name="idplace" />
+            </Principal>
+            <Dependent Role="billet">
+              <PropertyRef Name="idplace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="idtrains">
+          <End Role="train" Type="Self.train" Multiplicity="0..1" />
+          <End Role="billet" Type="Self.billet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="train">
+              <PropertyRef Name="idtrain" />
+            </Principal>
+            <Dependent Role="billet">
+              <PropertyRef Name="idtrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="idvoitures">
+          <End Role="voiture" Type="Self.voiture" Multiplicity="0..1" />
+          <End Role="billet" Type="Self.billet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voiture">
+              <PropertyRef Name="idvoiture" />
+            </Principal>
+            <Dependent Role="billet">
+              <PropertyRef Name="idvoiture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="idvoiturePlace">
+          <End Role="voiture" Type="Self.voiture" Multiplicity="0..1" />
+          <End Role="place" Type="Self.place" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voiture">
+              <PropertyRef Name="idvoiture" />
+            </Principal>
+            <Dependent Role="place">
+              <PropertyRef Name="idvoiture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Model3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="billet" EntityType="Self.billet" />
+          <EntitySet Name="client" EntityType="Self.client" />
+          <EntitySet Name="place" EntityType="Self.place" />
+          <EntitySet Name="train" EntityType="Self.train" />
+          <EntitySet Name="villes" EntityType="Self.villes" />
+          <EntitySet Name="voiture" EntityType="Self.voiture" />
+          <AssociationSet Name="idplaces" Association="Self.idplaces">
+            <End Role="place" EntitySet="place" />
+            <End Role="billet" EntitySet="billet" />
+          </AssociationSet>
+          <AssociationSet Name="idtrains" Association="Self.idtrains">
+            <End Role="train" EntitySet="train" />
+            <End Role="billet" EntitySet="billet" />
+          </AssociationSet>
+          <AssociationSet Name="idvoitures" Association="Self.idvoitures">
+            <End Role="voiture" EntitySet="voiture" />
+            <End Role="billet" EntitySet="billet" />
+          </AssociationSet>
+          <AssociationSet Name="idvoiturePlace" Association="Self.idvoiturePlace">
+            <End Role="voiture" EntitySet="voiture" />
+            <End Role="place" EntitySet="place" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sncfModel3StoreContainer" CdmEntityContainer="Model3">
+          <EntitySetMapping Name="billet">
+            <EntityTypeMapping TypeName="sncfModel3.billet">
+              <MappingFragment StoreEntitySet="billet">
+                <ScalarProperty Name="idbillet" ColumnName="idbillet" />
+                <ScalarProperty Name="villeDepart" ColumnName="villeDepart" />
+                <ScalarProperty Name="villeArrivee" ColumnName="villeArrivee" />
+                <ScalarProperty Name="gareDepart" ColumnName="gareDepart" />
+                <ScalarProperty Name="gareArrivee" ColumnName="gareArrivee" />
+                <ScalarProperty Name="heureDepart" ColumnName="heureDepart" />
+                <ScalarProperty Name="heureArrivee" ColumnName="heureArrivee" />
+                <ScalarProperty Name="prix" ColumnName="prix" />
+                <ScalarProperty Name="idtrain" ColumnName="idtrain" />
+                <ScalarProperty Name="idvoiture" ColumnName="idvoiture" />
+                <ScalarProperty Name="idplace" ColumnName="idplace" />
+                <ScalarProperty Name="idclient" ColumnName="idclient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="client">
+            <EntityTypeMapping TypeName="sncfModel3.client">
+              <MappingFragment StoreEntitySet="client">
+                <ScalarProperty Name="idclient" ColumnName="idclient" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="reduction" ColumnName="reduction" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="place">
+            <EntityTypeMapping TypeName="sncfModel3.place">
+              <MappingFragment StoreEntitySet="place">
+                <ScalarProperty Name="idplace" ColumnName="idplace" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="situation" ColumnName="situation" />
+                <ScalarProperty Name="idvoiture" ColumnName="idvoiture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="train">
+            <EntityTypeMapping TypeName="sncfModel3.train">
+              <MappingFragment StoreEntitySet="train">
+                <ScalarProperty Name="idtrain" ColumnName="idtrain" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="villes">
+            <EntityTypeMapping TypeName="sncfModel3.villes">
+              <MappingFragment StoreEntitySet="villes">
+                <ScalarProperty Name="nom" ColumnName="nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="voiture">
+            <EntityTypeMapping TypeName="sncfModel3.voiture">
+              <MappingFragment StoreEntitySet="voiture">
+                <ScalarProperty Name="idvoiture" ColumnName="idvoiture" />
+                <ScalarProperty Name="placesDispo" ColumnName="placesDispo" />
+                <ScalarProperty Name="idtrain" ColumnName="idtrain" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

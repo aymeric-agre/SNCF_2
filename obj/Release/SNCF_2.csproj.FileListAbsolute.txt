@@ -1,0 +1,17 @@
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.frmbillet.resources
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.MainForm.resources
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.Properties.Resources.resources
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.csproj.GenerateResource.Cache
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.frmclient.resources
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\bin\Release\SNCF_2.exe.config
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\bin\Release\SNCF_2.exe
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\bin\Release\SNCF_2.pdb
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\bin\Release\EntityFramework.dll
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\bin\Release\EntityFramework.SqlServer.dll
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\bin\Release\MySql.Data.Entity.EF5.dll
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\bin\Release\MySql.Data.Entity.EF6.dll
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\bin\Release\EntityFramework.xml
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\bin\Release\EntityFramework.SqlServer.xml
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.exe
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.pdb
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.csprojResolveAssemblyReference.cache

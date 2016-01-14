@@ -29,8 +29,9 @@ namespace SNCF_2
 
         private void myTicketsTabPage_Load(object sender, EventArgs e)
         {
-            string login;
+            string login= "";
             command.CommandText = "Select client.login from client where (login='" + login + "')";
+            bool value;
             try
             {
                 conn.Open();

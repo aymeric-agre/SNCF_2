@@ -15,3 +15,4 @@ D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\bin\Release\EntityFramework.SqlS
 D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.exe
 D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.pdb
 D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.csprojResolveAssemblyReference.cache
+D:\Documents\Cours\S9\SQL\TicketsManager\SNCF_2\obj\Release\SNCF_2.MyAccountForm.resources

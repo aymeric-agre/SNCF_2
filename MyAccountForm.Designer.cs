@@ -63,7 +63,6 @@
             this.myTicketsTabPage.TabIndex = 1;
             this.myTicketsTabPage.Text = "Mes Réservations";
             this.myTicketsTabPage.UseVisualStyleBackColor = true;
-            this.myTicketsTabPage.Click += new System.EventHandler(this.myTicketsTabPage_Click);
             // 
             // MyAccount
             // 

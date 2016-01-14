@@ -35,10 +35,11 @@ namespace SNCF_2
             thisClient.password = this.passwordTextBox.Text.ToString();
             thisClient.nom = this.nameTextBox.Text.ToString();
             int ageValue;
-            if (int.TryParse(this.nameTextBox.Text.ToString(), out ageValue) && ageValue > 0 && ageValue < 150)
+            if (int.TryParse(this.ageTextBox.Text.ToString(), out ageValue) && ageValue > 0 && ageValue < 150)
             {
                 thisClient.age = ageValue;
                 string reduction = Math.Abs((float)ageValue / 100f - 0.5).ToString().Replace(',','.');
+                Console.WriteLine(reduction);
 
                 bool logged = loginFunction(thisClient.login, thisClient.password);
 

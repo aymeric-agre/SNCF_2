@@ -17,9 +17,12 @@ namespace SNCF_2
         string connString;
         MySqlConnection conn;
         MySqlCommand command;
+        client thisClient;
+        bool modifying = false;
 
-        public MyAccountForm(client thisClient)
+        public MyAccountForm(client loggedClient)
         {
+            thisClient = loggedClient;
             connString = "Server=localhost;Port=3306;Database=sncf;Uid=root;password=root";
             conn = new MySqlConnection(connString);
             command = conn.CreateCommand();
@@ -29,8 +32,7 @@ namespace SNCF_2
 
         private void myTicketsTabPage_Load(object sender, EventArgs e)
         {
-            string login= "";
-            command.CommandText = "Select client.login from client where (login='" + login + "')";
+            command.CommandText = "Select * from billet where (login='" + thisClient.login + "')";
             bool value;
             try
             {
@@ -50,6 +52,53 @@ namespace SNCF_2
                 value = true;
             }
             conn.Close();
+        }
+
+        private void myProfilTabPage_Load(object sender, EventArgs e)
+        {
+            command.CommandText = "Select * from billet where (login='" + thisClient.login + "')";
+            bool value;
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            MySqlDataReader reader = command.ExecuteReader();
+            if (!reader.Read())
+            {
+                value = false;
+            }
+            else
+            {
+                value = true;
+            }
+            conn.Close();
+        }
+
+        private void modifyProfilButton_Click(object sender, EventArgs e)
+        {
+            bool value;
+            string textModifyProfilButton;
+            if(modifying)
+            {
+                value = false;
+                textModifyProfilButton = "Mettre à jour mon profil";
+                modifying = false;
+            }
+            else
+            {
+                value = true;
+                textModifyProfilButton = "Modifier mes informations";
+                modifying = true;
+            }
+            this.passwordTextBox.ReadOnly = value;
+            this.loginTextBox.ReadOnly = value;
+            this.nomTextBox.ReadOnly = value;
+            this.ageTextBox.ReadOnly = value;
+            this.modifyProfilButton.Text = textModifyProfilButton;
         }
     }
 }

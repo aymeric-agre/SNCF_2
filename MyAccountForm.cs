@@ -25,7 +25,7 @@ namespace SNCF_2
         public MyAccountForm(client loggedClient)
         {
             thisClient = loggedClient;
-            connString = "Server=localhost;Port=3306;Database=sncf;Uid=root;password=root";
+            connString = "Server=localhost;Port=3306;Database=sncf;uid=root;password=root";
             conn = new MySqlConnection(connString);
             command = conn.CreateCommand();
 
@@ -149,7 +149,7 @@ namespace SNCF_2
             
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void returnCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             allerRetour=!allerRetour;
             retourCalendar.Visible = !retourCalendar.Visible;

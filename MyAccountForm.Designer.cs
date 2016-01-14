@@ -55,17 +55,17 @@
             this.billetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sncfDataSet = new SNCF_2.sncfDataSet();
             this.newTicketTabPage = new System.Windows.Forms.TabPage();
+            this.RetourDateLabel = new System.Windows.Forms.Label();
+            this.departLabel = new System.Windows.Forms.Label();
+            this.retourCalendar = new System.Windows.Forms.MonthCalendar();
+            this.returnCheckBox = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SelectionVilleArriveeComboBox = new System.Windows.Forms.ComboBox();
             this.villeDepartLabel = new System.Windows.Forms.Label();
             this.selectionVilleDepartComboBox = new System.Windows.Forms.ComboBox();
             this.departCalendar = new System.Windows.Forms.MonthCalendar();
             this.billetTableAdapter = new SNCF_2.sncfDataSetTableAdapters.billetTableAdapter();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.SelectionVilleArriveeComboBox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.ARCheckbox = new System.Windows.Forms.CheckBox();
-            this.retourCalendar = new System.Windows.Forms.MonthCalendar();
-            this.departLabel = new System.Windows.Forms.Label();
-            this.RetourDateLabel = new System.Windows.Forms.Label();
             this.myAccountTabControl.SuspendLayout();
             this.myProfilTabPage.SuspendLayout();
             this.myTicketsTabPage.SuspendLayout();
@@ -303,7 +303,7 @@
             this.newTicketTabPage.Controls.Add(this.RetourDateLabel);
             this.newTicketTabPage.Controls.Add(this.departLabel);
             this.newTicketTabPage.Controls.Add(this.retourCalendar);
-            this.newTicketTabPage.Controls.Add(this.ARCheckbox);
+            this.newTicketTabPage.Controls.Add(this.returnCheckBox);
             this.newTicketTabPage.Controls.Add(this.label1);
             this.newTicketTabPage.Controls.Add(this.SelectionVilleArriveeComboBox);
             this.newTicketTabPage.Controls.Add(this.villeDepartLabel);
@@ -316,6 +316,60 @@
             this.newTicketTabPage.Text = "Acheter un billet";
             this.newTicketTabPage.UseVisualStyleBackColor = true;
             this.newTicketTabPage.Click += new System.EventHandler(this.newTicketTabPage_Click);
+            // 
+            // RetourDateLabel
+            // 
+            this.RetourDateLabel.AutoSize = true;
+            this.RetourDateLabel.Location = new System.Drawing.Point(602, 24);
+            this.RetourDateLabel.Name = "RetourDateLabel";
+            this.RetourDateLabel.Size = new System.Drawing.Size(75, 13);
+            this.RetourDateLabel.TabIndex = 8;
+            this.RetourDateLabel.Text = "Date de retour";
+            this.RetourDateLabel.Visible = false;
+            // 
+            // departLabel
+            // 
+            this.departLabel.AutoSize = true;
+            this.departLabel.Location = new System.Drawing.Point(283, 24);
+            this.departLabel.Name = "departLabel";
+            this.departLabel.Size = new System.Drawing.Size(78, 13);
+            this.departLabel.TabIndex = 7;
+            this.departLabel.Text = "Date de départ";
+            // 
+            // retourCalendar
+            // 
+            this.retourCalendar.Location = new System.Drawing.Point(524, 46);
+            this.retourCalendar.Name = "retourCalendar";
+            this.retourCalendar.TabIndex = 6;
+            this.retourCalendar.Visible = false;
+            // 
+            // returnCheckBox
+            // 
+            this.returnCheckBox.AutoSize = true;
+            this.returnCheckBox.Location = new System.Drawing.Point(40, 146);
+            this.returnCheckBox.Name = "returnCheckBox";
+            this.returnCheckBox.Size = new System.Drawing.Size(76, 17);
+            this.returnCheckBox.TabIndex = 5;
+            this.returnCheckBox.Text = "Aller-retour";
+            this.returnCheckBox.UseVisualStyleBackColor = true;
+            this.returnCheckBox.CheckedChanged += new System.EventHandler(this.returnCheckBox_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(37, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Ville d\'arrivée";
+            // 
+            // SelectionVilleArriveeComboBox
+            // 
+            this.SelectionVilleArriveeComboBox.FormattingEnabled = true;
+            this.SelectionVilleArriveeComboBox.Location = new System.Drawing.Point(40, 99);
+            this.SelectionVilleArriveeComboBox.Name = "SelectionVilleArriveeComboBox";
+            this.SelectionVilleArriveeComboBox.Size = new System.Drawing.Size(122, 21);
+            this.SelectionVilleArriveeComboBox.TabIndex = 3;
             // 
             // villeDepartLabel
             // 
@@ -346,60 +400,6 @@
             // billetTableAdapter
             // 
             this.billetTableAdapter.ClearBeforeFill = true;
-            // 
-            // SelectionVilleArriveeComboBox
-            // 
-            this.SelectionVilleArriveeComboBox.FormattingEnabled = true;
-            this.SelectionVilleArriveeComboBox.Location = new System.Drawing.Point(40, 99);
-            this.SelectionVilleArriveeComboBox.Name = "SelectionVilleArriveeComboBox";
-            this.SelectionVilleArriveeComboBox.Size = new System.Drawing.Size(122, 21);
-            this.SelectionVilleArriveeComboBox.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 83);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Ville d\'arrivée";
-            // 
-            // ARCheckbox
-            // 
-            this.ARCheckbox.AutoSize = true;
-            this.ARCheckbox.Location = new System.Drawing.Point(40, 146);
-            this.ARCheckbox.Name = "ARCheckbox";
-            this.ARCheckbox.Size = new System.Drawing.Size(76, 17);
-            this.ARCheckbox.TabIndex = 5;
-            this.ARCheckbox.Text = "Aller-retour";
-            this.ARCheckbox.UseVisualStyleBackColor = true;
-            this.ARCheckbox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // retourCalendar
-            // 
-            this.retourCalendar.Location = new System.Drawing.Point(524, 46);
-            this.retourCalendar.Name = "retourCalendar";
-            this.retourCalendar.TabIndex = 6;
-            this.retourCalendar.Visible = false;
-            // 
-            // departLabel
-            // 
-            this.departLabel.AutoSize = true;
-            this.departLabel.Location = new System.Drawing.Point(283, 24);
-            this.departLabel.Name = "departLabel";
-            this.departLabel.Size = new System.Drawing.Size(78, 13);
-            this.departLabel.TabIndex = 7;
-            this.departLabel.Text = "Date de départ";
-            // 
-            // RetourDateLabel
-            // 
-            this.RetourDateLabel.AutoSize = true;
-            this.RetourDateLabel.Location = new System.Drawing.Point(602, 24);
-            this.RetourDateLabel.Name = "RetourDateLabel";
-            this.RetourDateLabel.Size = new System.Drawing.Size(75, 13);
-            this.RetourDateLabel.TabIndex = 8;
-            this.RetourDateLabel.Text = "Date de retour";
-            this.RetourDateLabel.Visible = false;
             // 
             // MyAccountForm
             // 
@@ -458,7 +458,7 @@
         private System.Windows.Forms.ComboBox selectionVilleDepartComboBox;
         private System.Windows.Forms.ComboBox SelectionVilleArriveeComboBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox ARCheckbox;
+        private System.Windows.Forms.CheckBox returnCheckBox;
         private System.Windows.Forms.MonthCalendar retourCalendar;
         private System.Windows.Forms.Label RetourDateLabel;
         private System.Windows.Forms.Label departLabel;

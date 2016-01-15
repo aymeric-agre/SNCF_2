@@ -47,6 +47,9 @@ namespace SNCF_2
                     conn.Open();
                     command.CommandText = "Insert into client (login, password, nom, age, reduction) values('" + thisClient.login + "','" + thisClient.password + "','" + thisClient.nom + "','" + thisClient.age + "','" + thisClient.reduction + "')";
                     command.ExecuteNonQuery();
+                    command.CommandText = "Select * from client where (login='"+ thisClient.login +"')";
+                    MySqlDataReader reader = command.ExecuteReader();
+                    thisClient.idclient = reader.GetInt32("idclient");
                     conn.Close();
                     redirection(thisClient);
                 }
@@ -79,7 +82,7 @@ namespace SNCF_2
         private client loginFunction(string login, string password)
         {
             client thisClient = new client();
-            command.CommandText = "Select client.* from client where (login='" + login + "') AND (password='" + password + "')";
+            command.CommandText = "Select * from client where (login='" + login + "') AND (password='" + password + "')";
             try
             {
                 conn.Open();
@@ -88,8 +91,7 @@ namespace SNCF_2
             {
                 Console.WriteLine(ex.Message);
             }
-            MySqlDataReader reader = command.ExecuteReader();
-            
+            MySqlDataReader reader = command.ExecuteReader(); 
             if (!reader.Read())
             {
                 conn.Close();
@@ -97,7 +99,12 @@ namespace SNCF_2
             }
             else
             {
-                Console.WriteLine(reader);
+                thisClient.idclient = reader.GetInt32("idclient");
+                thisClient.nom = reader.GetString("nom");
+                thisClient.age = reader.GetInt32("age");
+                thisClient.reduction = reader.GetInt32("reduction");
+                thisClient.login = reader.GetString("login");
+                thisClient.password = reader.GetString("password");                
                 conn.Close();
                 return thisClient;
             }

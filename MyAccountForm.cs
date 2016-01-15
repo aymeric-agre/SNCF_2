@@ -20,6 +20,9 @@ namespace SNCF_2
         client thisClient;
         bool modifying = false;
         bool allerRetour = false;
+        private DataGrid dg = null;
+        private MySqlDataAdapter da = null;
+        private DataSet ds = null;
 
         public MyAccountForm(client loggedClient)
         {
@@ -33,68 +36,80 @@ namespace SNCF_2
 
         private void myTicketsTabPage_Load(object sender, EventArgs e)
         {
-            command.CommandText = "Select * from billet where (login='" + thisClient.login + "')";
-            bool value;
+            dg = new DataGrid();
+            dg.CaptionBackColor = System.Drawing.Color.White;
+            dg.CaptionForeColor = System.Drawing.Color.Black;
+            dg.CaptionText = "Mes Billets";
+            dg.Location = new Point(8, 0);
+            dg.Size = new Size(350, 300);
+            dg.TabIndex = 0;
+            dg.Parent = this.myTicketsTabPage;  
+
+            command.CommandText = "Select * from billet where (idclient='" + thisClient.idclient + "')";
             try
             {
                 conn.Open();
+                ds = new DataSet();
+                da = new MySqlDataAdapter(command.CommandText, conn);
+                da.Fill(ds, "Mes billets");
+
+                dg.DataSource = ds.Tables["billet"];
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            MySqlDataReader reader = command.ExecuteReader();
-            if (!reader.Read())
+            finally
             {
-                value = false;
+                if(conn != null)
+                {
+                    conn.Close();
+                }
             }
-            else
-            {
-                value = true;
-            }
-            conn.Close();
         }
 
         private void myProfilTabPage_Load(object sender, EventArgs e)
         {
-            command.CommandText = "Select * from billet where (login='" + thisClient.login + "')";
-            
-            bool value;
-            try
-            {
-                conn.Open();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            MySqlDataReader reader = command.ExecuteReader();
-            if (!reader.Read())
-            {
-                value = false;
-            }
-            else
-            {
-                value = true;
-            }
-            conn.Close();
+            this.loginTextBox.Text = thisClient.login;
+            this.nomTextBox.Text = thisClient.nom;
+            this.ageTextBox.Text = thisClient.age.ToString();
+            this.passwordTextBox.Text = thisClient.password;
         }
 
         private void modifyProfilButton_Click(object sender, EventArgs e)
         {
             bool value;
             string textModifyProfilButton;
-            if(modifying)
+
+            if(!modifying)
             {
+                thisClient.login = this.loginTextBox.Text;
+                thisClient.password = this.passwordTextBox.Text;
+                thisClient.nom = this.nomTextBox.Text;
+                thisClient.age = int.Parse(this.ageTextBox.Text);
                 value = false;
                 textModifyProfilButton = "Mettre à jour mon profil";
-                modifying = false;
+                modifying = true;
+                try
+                {
+                    conn.Open();
+                    command.CommandText = "UPDATE client SET (login = '" + thisClient.login + "', password = '" + thisClient.password + "', age = '" + thisClient.age.ToString() +"', nom = '" + thisClient.nom + "')";
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }                
             }
             else
             {
                 value = true;
                 textModifyProfilButton = "Modifier mes informations";
-                modifying = true;
+                modifying = false;
             }
             this.passwordTextBox.ReadOnly = value;
             this.loginTextBox.ReadOnly = value;
@@ -106,6 +121,8 @@ namespace SNCF_2
         private void MyAccountForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'sncfDataSet.billet' table. You can move, or remove it, as needed.
+            myProfilTabPage_Load(sender, e);
+            myTicketsTabPage_Load(sender, e);
             conn.Open();
             try
             {
@@ -125,7 +142,6 @@ namespace SNCF_2
             }
 
             conn.Close();
-
         }
 
         private void newTicketTabPage_Click(object sender, EventArgs e)

@@ -27,8 +27,6 @@ C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\My
 C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\EntityFramework.xml
 C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\bin\Release\EntityFramework.SqlServer.xml
 C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.csprojResolveAssemblyReference.cache
-C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.frmbillet.resources
-C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.frmclient.resources
 C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.MainForm.resources
 C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.MyAccountForm.resources
 C:\Users\Utilisateur\Documents\Visual Studio 2015\Projects\SNCF_2\obj\Release\SNCF_2.Properties.Resources.resources

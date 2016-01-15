@@ -20,9 +20,12 @@ namespace SNCF_2
         client thisClient;
         bool modifying = false;
         bool allerRetour = false;
+
         private DataGrid dg = null;
         private MySqlDataAdapter da = null;
         private DataSet ds = null;
+
+        bool situationPlace = false; //fenêtre = true, couloir = false
 
         public MyAccountForm(client loggedClient)
         {
@@ -169,6 +172,42 @@ namespace SNCF_2
             allerRetour=!allerRetour;
             retourCalendar.Visible = !retourCalendar.Visible;
             RetourDateLabel.Visible = !RetourDateLabel.Visible;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (selectionVilleDepartComboBox.SelectedItem == null) { MessageBox.Show("Entrez une ville de départ"); }
+            if (SelectionVilleArriveeComboBox.SelectedItem == null) { MessageBox.Show("Entrez une ville d'arrivée"); }
+            if (selectionVilleDepartComboBox.SelectedItem == SelectionVilleArriveeComboBox.SelectedItem && selectionVilleDepartComboBox.SelectedItem != null) { MessageBox.Show("Choisissez une ville de départ et d'arrivée différente"); }
+            if (departCalendar.SelectionRange.Start == null) { MessageBox.Show("Sélectionnez une date de départ"); }
+            if (retourCalendar.SelectionRange.Start == null && allerRetour) { MessageBox.Show("Sélectionnez une date de retour"); }
+            MessageBox.Show(departCalendar.SelectionRange.Start.ToShortDateString());
+
+
+            if (!heureDepartLabel.Visible)
+            {
+                heureDepartLabel.Visible = true;
+                heureDepartListBox.Visible = true;
+                heureDepartListBox.Items.Add("11h20");
+                if (allerRetour)
+                {
+                    heureRetourLabel.Visible = true;
+                    heureRetourListBox.Visible = true;
+                }
+            }
+            
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            allerRetour = false;
+            ARCheckbox.Checked = false;
+            heureDepartLabel.Visible = false;
+            heureDepartListBox.Visible = false;
+            heureRetourLabel.Visible = false;
+            heureRetourListBox.Visible = false;
+            selectionVilleDepartComboBox.SelectedItem = null;
+            SelectionVilleArriveeComboBox.SelectedItem = null;
         }
     }
 }

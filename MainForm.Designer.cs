@@ -40,6 +40,8 @@
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.ageTextBox = new System.Windows.Forms.TextBox();
             this.ageLabel = new System.Windows.Forms.Label();
+            this.sncfPictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.sncfPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // accountLabel
@@ -152,11 +154,21 @@
             this.ageLabel.Text = "Age";
             this.ageLabel.Visible = false;
             // 
+            // sncfPictureBox
+            // 
+            this.sncfPictureBox.Image = global::SNCF_2.Properties.Resources.sncf_3d698314b0f11aef98e7c193f8d3a094;
+            this.sncfPictureBox.Location = new System.Drawing.Point(295, 38);
+            this.sncfPictureBox.Name = "sncfPictureBox";
+            this.sncfPictureBox.Size = new System.Drawing.Size(253, 130);
+            this.sncfPictureBox.TabIndex = 12;
+            this.sncfPictureBox.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 261);
+            this.ClientSize = new System.Drawing.Size(575, 257);
+            this.Controls.Add(this.sncfPictureBox);
             this.Controls.Add(this.ageLabel);
             this.Controls.Add(this.ageTextBox);
             this.Controls.Add(this.nameTextBox);
@@ -171,6 +183,7 @@
             this.Controls.Add(this.accountLabel);
             this.Name = "MainForm";
             this.Text = "Gestionnaire de Billets de Train";
+            ((System.ComponentModel.ISupportInitialize)(this.sncfPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,6 +203,7 @@
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox ageTextBox;
         private System.Windows.Forms.Label ageLabel;
+        private System.Windows.Forms.PictureBox sncfPictureBox;
     }
 }
 

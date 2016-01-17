@@ -16,14 +16,16 @@ namespace SNCF_2
     public partial class MainForm : Form
     {
         string connString;
-        MySqlConnection conn;
-        MySqlCommand command;
+        MySqlConnection conn, conn2;
+        MySqlCommand command, command2;
 
         public MainForm()
         {
             connString = "Server=localhost;Port=3306;Database=sncf;Uid=root;password=root";
             conn = new MySqlConnection(connString);
+            conn2 = new MySqlConnection(connString);
             command = conn.CreateCommand();
+            command2 = conn2.CreateCommand();
 
             InitializeComponent();
         }
@@ -44,14 +46,27 @@ namespace SNCF_2
 
                 if (logged == null)
                 {
-                    conn.Open();
-                    command.CommandText = "Insert into client (login, password, nom, age, reduction) values('" + thisClient.login + "','" + thisClient.password + "','" + thisClient.nom + "','" + thisClient.age + "','" + thisClient.reduction + "')";
-                    command.ExecuteNonQuery();
-                    command.CommandText = "Select * from client where (login='"+ thisClient.login +"')";
-                    MySqlDataReader reader = command.ExecuteReader();
-                    thisClient.idclient = reader.GetInt32("idclient");
-                    conn.Close();
-                    redirection(thisClient);
+                    try
+                    {
+                        conn.Open();
+                        command.CommandText = "Insert into client (login, password, nom, age, reduction) values('" + thisClient.login + "','" + thisClient.password + "','" + thisClient.nom + "','" + thisClient.age + "','" + thisClient.reduction.ToString().Replace(",", ".") + "')";
+                        command.ExecuteNonQuery();
+                        command.CommandText = "Select * from client where (login='" + thisClient.login + "')";
+                        MySqlDataReader reader = command.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            thisClient.idclient = reader.GetInt32("idclient");
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                        redirection(thisClient);
+                    }       
                 }
                 else
                 {
@@ -102,7 +117,7 @@ namespace SNCF_2
                 thisClient.idclient = reader.GetInt32("idclient");
                 thisClient.nom = reader.GetString("nom");
                 thisClient.age = reader.GetInt32("age");
-                thisClient.reduction = reader.GetInt32("reduction");
+                thisClient.reduction = reader.GetFloat("reduction");
                 thisClient.login = reader.GetString("login");
                 thisClient.password = reader.GetString("password");                
                 conn.Close();
@@ -122,10 +137,8 @@ namespace SNCF_2
 
         private void redirection(client thisClient)
         {
-            this.Hide();
             MyAccountForm myAccountForm = new MyAccountForm(thisClient);
             myAccountForm.Show();
         }
-
     }
 }
